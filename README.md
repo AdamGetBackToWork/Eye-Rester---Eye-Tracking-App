@@ -6,7 +6,7 @@ This is a 2.0 version of my Eye Rester Python App. First one being a simple appl
 
 ### DEMO:
 
-[![Watch the video](https://img.youtube.com/vi/BPcLg4jZ3KkD/maxresdefault.jpg)](https://www.youtube.com/watch?v=BPcLg4jZ3Kk)
+[![Watch the video](https://img.youtube.com/vi/BPcLg4jZ3KkD/0.jpg)](https://www.youtube.com/watch?v=BPcLg4jZ3Kk)
 
 <!-- https://youtu.be/BPcLg4jZ3Kk -->
 
