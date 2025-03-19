@@ -4,7 +4,11 @@
 
 This is a 2.0 version of my Eye Rester Python App. First one being a simple application that works in the background, and pops-up every 20 minutes to remind us to look away from the computer. This time, the Eye Rester, can also see if we're really looking away or just faking! It recognizes if our pupils are pointed away from the screen or looking right towards it! Only when we're looking away the clock counts down from 20s to 0 - to complete the time looking away!
 
-_DEMO HERE_
+### DEMO:
+
+[![Watch the video]](https://youtu.be/BPcLg4jZ3Kk)
+
+<!-- https://youtu.be/BPcLg4jZ3Kk -->
 
 ### Credit where its due
 

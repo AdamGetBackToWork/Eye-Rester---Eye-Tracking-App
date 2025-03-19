@@ -10,7 +10,7 @@ class EyeResterApp:
         self.root = root
         self.root.title("EYE rester")
 
-        self.countdown_seconds = 20  # Countdown timer initialized to 20 seconds
+        self.countdown_seconds = 20
 
         self.load_images()
         self.create_widgets()
@@ -19,7 +19,6 @@ class EyeResterApp:
         self.update_timer()
 
     def color_generator(self):
-        """Generates two lists of colors for background selection."""
         self.colors1 = [
             "#856ff8",
             "#46ACC0",
@@ -41,39 +40,43 @@ class EyeResterApp:
         ]
 
     def configuration_setting(self):
-        """Randomly selects a background color and sets text color accordingly."""
         self.bg_color = random.choice(
             self.colors1 if random.randrange(0, 2) == 1 else self.colors2
         )
         self.txt_color = "#000000" if self.bg_color in self.colors1 else "#f8f6e8"
 
     def folder_path(self):
-        """Returns the directory of the current script file."""
         return dirname(__file__)
 
     def load_images(self):
-        """Loads an image from the 'images' directory."""
         image_path = str(self.folder_path()) + "/images/option_2--.png"
-        image_path = image_path.replace(
-            "\\", "/"
-        )  # Ensures compatibility with different OS
+        image_path = image_path.replace("\\", "/")
+
         self.image = PhotoImage(file=image_path)
 
     def create_widgets(self):
-        """Creates UI elements such as labels and images."""
         self.color_generator()
         self.configuration_setting()
 
-        # Set up an image label
+        screen_width = self.root.winfo_screenwidth()
+        screen_height = self.root.winfo_screenheight()
+
         self.image_label = tk.Label(self.root, image=self.image)
-        self.image_label.pack(side=tk.LEFT, anchor=tk.NW, pady=40, padx=(60, 15))
+        self.image_label.pack(
+            side=tk.LEFT,
+            anchor=tk.NW,
+            pady=40,
+            padx=(60, 15),
+        )
         self.image_label.configure(bg=self.bg_color)
 
-        # Instruction label
         self.welcome_label = Label(
             self.root,
             text="It's time to give your eyes a rest!\n\nLook ~20 feet away",
-            font=("CIN", 14),
+            font=(
+                "CIN",
+                14,
+            ),
             anchor=CENTER,
             fg=self.txt_color,
             pady=30,
@@ -81,7 +84,6 @@ class EyeResterApp:
         self.welcome_label.configure(bg=self.bg_color)
         self.welcome_label.pack()
 
-        # Timer label
         self.timer_label = Label(
             self.root, text=f"Time left: {self.countdown_seconds} seconds", anchor=S
         )
@@ -89,7 +91,6 @@ class EyeResterApp:
         self.timer_label.pack()
 
     def center_window(self):
-        """Centers the application window on the screen."""
         screen_width = self.root.winfo_screenwidth()
         screen_height = self.root.winfo_screenheight()
 
@@ -103,9 +104,9 @@ class EyeResterApp:
         self.root.configure(bg=self.bg_color)
 
     def update_timer(self):
-        """Updates the timer every second, checking if the user is looking away."""
+        # Check if user is looking away
         if Example.is_away() == 1:
-            # Decrement timer only if user is looking away
+            # Only countdown when user is looking away
             if self.countdown_seconds > 0:
                 self.countdown_seconds -= 1
                 self.timer_label.config(
@@ -115,18 +116,21 @@ class EyeResterApp:
                 )
             else:
                 self.timer_label.config(text="Time's up!")
+            eye_position_message = "Away"
         else:
-            # Pause countdown and notify user to look away
+            # Display "Not looking away" and pause countdown
             self.timer_label.config(
                 text="Not looking away!", font=("Optima", 10), fg=self.txt_color
             )
+            eye_position_message = "Not Away"
 
-        # Schedule update_timer to run again after 1 second
+        # Call update_timer again after 1 second
         self.root.after(1000, self.update_timer)
-        print(Example.is_away())  # Debugging output
+        print("The current eye position is: " + eye_position_message)
 
 
 if __name__ == "__main__":
     root = tk.Tk()
     app = EyeResterApp(root)
+
     root.mainloop()
