@@ -6,7 +6,6 @@ This is a 2.0 version of my Eye Rester Python App. First one being a simple appl
 
 ### DEMO:
 
-Click the thumbnail to watch the video!
 [![Watch the video](img/thumbnail.gif)](https://www.youtube.com/watch?v=BPcLg4jZ3Kk)
 
 <!-- https://youtu.be/BPcLg4jZ3Kk -->
